@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">TRUESTEP</string>
+    <string-array name="City">
+        <item>Nasik</item>
+        <item>Pune</item>
+        <item>Mumbai</item>
+    </string-array>
+    <string-array name="Area">
+        <item>Dwarka</item>
+        <item>Shalimar</item>
+        <item>Indra Nagar</item>
+    </string-array>
+    <string-array name="Doctor">
+        <item>Dr.Sharique Shaikh</item>
+        <item>Dr.Strange</item>
+        <item>Dr.Ankita Shirsat</item>
+        <item>Dr.No</item>
+    </string-array>
+    <string-array name="Product">
+        <item>Iteraconezol</item>
+        <item>Luliconezol</item>
+        <item>DurexConezol</item>
+        <item>Fluconezol</item>
+    </string-array>
+
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="thisbuttonwilltakeyoutolocationselectionactivity">ThisButtonWillTakeYouToLocationSelectionActivity</string>
+
+
+</resources>
+
+
