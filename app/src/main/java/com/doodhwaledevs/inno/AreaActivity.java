@@ -2,8 +2,10 @@ package com.doodhwaledevs.inno;
 
 import android.app.AlertDialog;
 import android.app.LauncherActivity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.app.ProgressDialog;
@@ -11,6 +13,8 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -26,7 +30,6 @@ import java.util.List;
 
 public class AreaActivity extends AppCompatActivity implements AreaAdapter.OnItemClickListener {
 
-    public static final String EXTRA_AREA = "AreaName";
 
 
     private String url = "https://api.myjson.com/bins/qppl0";
@@ -98,20 +101,17 @@ public class AreaActivity extends AppCompatActivity implements AreaAdapter.OnIte
     }
 
 
-
+    // saving info
 
     @Override
     public void OnItemClick(int position) {
 
-        Intent detailIntent = new Intent(this, LocationActivity.class);
         Area clickedItem = Area.get(position);
-        detailIntent.putExtra(EXTRA_AREA,clickedItem.getArea());
-        startActivity(detailIntent);
 
-        String SelectedArea = clickedItem.getArea();
+        SharedPreferences sharedArea = getSharedPreferences("SelectedArea", Context.MODE_PRIVATE);
 
-
-
+        SharedPreferences.Editor AreaEditor = sharedArea.edit();
+        AreaEditor.putString("Area", clickedItem.getArea());
 
     }
 }

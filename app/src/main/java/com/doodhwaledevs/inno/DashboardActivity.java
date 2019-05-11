@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import static com.doodhwaledevs.inno.AreaActivity.EXTRA_AREA;
 
 
 public class DashboardActivity extends AppCompatActivity {
@@ -25,11 +24,6 @@ public class DashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        Intent intent = getIntent();
-        String AreaName = intent.getStringExtra(EXTRA_AREA);
-
-        TextView DashSelectedArea = findViewById(R.id.DashSelectedArea);
-        DashSelectedArea.setText(AreaName);
 
        Area=(ImageButton) findViewById(R.id.LocationButton);
        Doctor=(ImageButton) findViewById(R.id.DoctorButton);

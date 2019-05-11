@@ -247,8 +247,8 @@
 
     <TextView
         android:id="@+id/DashSelectedArea"
-        android:layout_width="127dp"
-        android:layout_height="29dp"
+        android:layout_width="119dp"
+        android:layout_height="23dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -260,6 +260,22 @@
         app:layout_constraintStart_toEndOf="@+id/AreaSelectTV"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.408" />
+
+    <TextView
+        android:id="@+id/DashSelectedCity"
+        android:layout_width="115dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Selected City"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.237"
+        app:layout_constraintStart_toEndOf="@+id/SelectedCityTV"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.36" />
 
 
 </android.support.constraint.ConstraintLayout>

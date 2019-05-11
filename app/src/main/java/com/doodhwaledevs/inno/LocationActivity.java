@@ -1,27 +1,32 @@
 package com.doodhwaledevs.inno;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import static com.doodhwaledevs.inno.AreaActivity.EXTRA_AREA;
 
 public class LocationActivity extends AppCompatActivity {
 
     private Button City_Button;
     private Button Area_Button;
     private Button Back;
+    public  TextView AreaSelectTV;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location);
+
+        AreaSelectTV = (TextView) findViewById(R.id.AreaSelectTV);
 
         City_Button = (Button) findViewById(R.id.City_Button);
         Area_Button = (Button) findViewById(R.id.Area_Button);
@@ -62,11 +67,15 @@ public class LocationActivity extends AppCompatActivity {
 
         });
 
-        Intent intent = getIntent();
-        String AreaName = intent.getStringExtra(EXTRA_AREA);
+    }
 
-        TextView SelectedArea = findViewById(R.id.AreaSelectTV);
-        SelectedArea.setText(AreaName);
+    public void DisplayArea(){
+
+        SharedPreferences sharedArea = getSharedPreferences("SelectedArea", Context.MODE_PRIVATE);
+
+        String AreaValue = sharedArea.getString("Selcted Area", "");
+
+        AreaSelectTV.setText(AreaValue);
     }
 
     public void openCityActivity() {
