@@ -1,4 +1,4 @@
-package com.doodhwaledevs.inno;
+package com.doodhwaledevs.truestep;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -22,35 +22,35 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductActivity extends AppCompatActivity {
+public class CityActivity extends AppCompatActivity {
 
-    private String url = "https://api.myjson.com/bins/16a74o";
+    private String url = "https://api.myjson.com/bins/qppl0";
 
-    private RecyclerView pList;
+    private RecyclerView cList;
 
     private LinearLayoutManager linearLayoutManager;
     private DividerItemDecoration dividerItemDecoration;
-    private List<Product> productProductName;
+    private List<City> City;
     private RecyclerView.Adapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product);
+        setContentView(R.layout.activity_city);
 
-        pList = findViewById(R.id.ProductRecycler);
+        cList = findViewById(R.id.CityRecycler);
 
-        productProductName = new ArrayList<>();
-        adapter = new ProductAdapter(getApplicationContext(),productProductName);
+        City = new ArrayList<>();
+        adapter = new CityAdapter(getApplicationContext(),City);
 
         linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        dividerItemDecoration = new DividerItemDecoration(pList.getContext(), linearLayoutManager.getOrientation());
+        dividerItemDecoration = new DividerItemDecoration(cList.getContext(), linearLayoutManager.getOrientation());
 
-        pList.setHasFixedSize(true);
-        pList.setLayoutManager(linearLayoutManager);
-        pList.addItemDecoration(dividerItemDecoration);
-        pList.setAdapter(adapter);
+        cList.setHasFixedSize(true);
+        cList.setLayoutManager(linearLayoutManager);
+        cList.addItemDecoration(dividerItemDecoration);
+        cList.setAdapter(adapter);
 
         getData();
     }
@@ -67,12 +67,11 @@ public class ProductActivity extends AppCompatActivity {
                     try {
                         JSONObject jsonObject = response.getJSONObject(i);
 
-                        Product product = new Product();
-                        product.setProductName(jsonObject.getString("ProductName"));
-                        product.setSpecification(jsonObject.getString("Specification"));
+                        City city = new City();
+                        city.setCity(jsonObject.getString("City"));
 
 
-                        productProductName.add(product);
+                        City.add(city);
                     } catch (JSONException e) {
                         e.printStackTrace();
                         progressDialog.dismiss();
@@ -95,14 +94,14 @@ public class ProductActivity extends AppCompatActivity {
     @Override
     public void onBackPressed()
     {
-        AlertDialog.Builder builder = new AlertDialog.Builder(ProductActivity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(CityActivity.this);
 
         builder.setTitle("Confirmation")
                 .setMessage("Confirm Selection?")
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        ProductActivity.super.onBackPressed();
+                        CityActivity.super.onBackPressed();
                     }
                 })
                 .setNegativeButton("No",null).setCancelable(false);

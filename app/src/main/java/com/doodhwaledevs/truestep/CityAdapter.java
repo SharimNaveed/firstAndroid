@@ -1,7 +1,6 @@
-package com.doodhwaledevs.inno;
+package com.doodhwaledevs.truestep;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,12 +8,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import java.util.List;
 
-public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.ViewHolder> {
+public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder> {
 
     private Context context;
-    private List<Doctor> list;
+    private List<City> list;
 
-    public DoctorAdapter(Context context, List<Doctor> list) {
+    public CityAdapter(Context context, List<City> list) {
         this.context = context;
         this.list = list;
     }
@@ -22,19 +21,18 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.ViewHolder
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.single_item_doctor, parent, false);
+        View v = LayoutInflater.from(context).inflate(R.layout.single_item_city, parent, false);
         return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Doctor doctor = list.get(position);
+        City city = list.get(position);
 
-        holder.textName.setText(doctor.getName());
-        holder.textQualification.setText(doctor.getQualification());
-
+        holder.textCity.setText(city.getCity());
 
     }
+
 
     @Override
     public int getItemCount() {
@@ -42,13 +40,12 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.ViewHolder
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView textName, textQualification;
+        public TextView textCity;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
-            textName = itemView.findViewById(R.id.main_Name);
-            textQualification = itemView.findViewById(R.id.main_Qualification);
+            textCity = itemView.findViewById(R.id.main_City);
 
         }
     }

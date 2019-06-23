@@ -1,21 +1,29 @@
-package com.doodhwaledevs.inno;
+package com.doodhwaledevs.truestep;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Html;
-import android.text.method.LinkMovementMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.security.PrivateKey;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONObject;
+
+import java.net.URL;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,14 +32,36 @@ public class MainActivity extends AppCompatActivity {
     private Button Login;
     private TextView ForgotPassword;
 
-
-
+    private static final String TAG = "MainActivity";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        String URL = "https://vl0dq6qsn3.execute-api.us-east-1.amazonaws.com/dev/employees";
+
+        final RequestQueue requestQueue= Volley.newRequestQueue(this);
+        JsonObjectRequest objectRequest = new JsonObjectRequest(
+                Request.Method.GET,
+                URL,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject Response) {
+                        Log.e("Response",Response.toString());
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("Response",error.toString());
+            }
+        }
+
+        );
+    requestQueue.add(objectRequest);
 
         Name = (EditText)findViewById(R.id.etUsername);
         Password =(EditText)findViewById(R.id.etPassword);
@@ -89,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog alert = builder.create();
         alert.show();
     }
+
 
 
 }

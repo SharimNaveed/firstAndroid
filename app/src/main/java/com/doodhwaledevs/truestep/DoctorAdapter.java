@@ -1,7 +1,6 @@
-package com.doodhwaledevs.inno;
+package com.doodhwaledevs.truestep;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,12 +8,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import java.util.List;
 
-public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
+public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.ViewHolder> {
 
     private Context context;
-    private List<Product> list;
+    private List<Doctor> list;
 
-    public ProductAdapter(Context context, List<Product> list) {
+    public DoctorAdapter(Context context, List<Doctor> list) {
         this.context = context;
         this.list = list;
     }
@@ -22,16 +21,16 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.single_item_product, parent, false);
+        View v = LayoutInflater.from(context).inflate(R.layout.single_item_doctor, parent, false);
         return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Product product = list.get(position);
+        Doctor doctor = list.get(position);
 
-        holder.textProductName.setText(product.getProductName());
-        holder.textSpecification.setText(product.getSpecification());
+        holder.textName.setText(doctor.getName());
+        holder.textQualification.setText(doctor.getQualification());
 
 
     }
@@ -42,13 +41,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView textProductName, textSpecification;
+        public TextView textName, textQualification;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
-            textProductName = itemView.findViewById(R.id.main_ProductName);
-            textSpecification = itemView.findViewById(R.id.main_Specification);
+            textName = itemView.findViewById(R.id.main_Name);
+            textQualification = itemView.findViewById(R.id.main_Qualification);
 
         }
     }

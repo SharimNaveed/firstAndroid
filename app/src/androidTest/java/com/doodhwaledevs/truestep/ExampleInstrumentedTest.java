@@ -1,4 +1,4 @@
-package com.doodhwaledevs.inno;
+package com.doodhwaledevs.truestep;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

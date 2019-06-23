@@ -1,4 +1,4 @@
-package com.doodhwaledevs.inno;
+package com.doodhwaledevs.truestep;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

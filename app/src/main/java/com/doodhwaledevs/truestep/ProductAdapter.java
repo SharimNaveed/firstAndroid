@@ -1,8 +1,6 @@
-package com.doodhwaledevs.inno;
+package com.doodhwaledevs.truestep;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,12 +8,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import java.util.List;
 
-public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder> {
+public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
 
     private Context context;
-    private List<City> list;
+    private List<Product> list;
 
-    public CityAdapter(Context context, List<City> list) {
+    public ProductAdapter(Context context, List<Product> list) {
         this.context = context;
         this.list = list;
     }
@@ -23,18 +21,19 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder> {
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.single_item_city, parent, false);
+        View v = LayoutInflater.from(context).inflate(R.layout.single_item_product, parent, false);
         return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        City city = list.get(position);
+        Product product = list.get(position);
 
-        holder.textCity.setText(city.getCity());
+        holder.textProductName.setText(product.getProductName());
+        holder.textSpecification.setText(product.getSpecification());
+
 
     }
-
 
     @Override
     public int getItemCount() {
@@ -42,12 +41,13 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView textCity;
+        public TextView textProductName, textSpecification;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
-            textCity = itemView.findViewById(R.id.main_City);
+            textProductName = itemView.findViewById(R.id.main_ProductName);
+            textSpecification = itemView.findViewById(R.id.main_Specification);
 
         }
     }

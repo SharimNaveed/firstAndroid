@@ -1,7 +1,5 @@
-package com.doodhwaledevs.inno;
+package com.doodhwaledevs.truestep;
 
-
-import java.util.jar.Attributes;
 
 public class Product {
 

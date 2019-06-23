@@ -1,11 +1,7 @@
-package com.doodhwaledevs.inno;
+package com.doodhwaledevs.truestep;
 
 import android.app.AlertDialog;
-import android.app.LauncherActivity;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.app.ProgressDialog;
@@ -13,8 +9,6 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.View;
-
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -28,38 +22,35 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AreaActivity extends AppCompatActivity implements AreaAdapter.OnItemClickListener {
+public class DoctorActivity extends AppCompatActivity {
 
+    private String url = "https://api.myjson.com/bins/yoasg";
 
-
-    private String url = "https://api.myjson.com/bins/qppl0";
-
-    private RecyclerView mList;
+    private RecyclerView dList;
 
     private LinearLayoutManager linearLayoutManager;
     private DividerItemDecoration dividerItemDecoration;
-    private List<Area> Area;
+    private List<Doctor> doctorName;
     private RecyclerView.Adapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_area);
+        setContentView(R.layout.activity_doctor);
 
-        mList = findViewById(R.id.AreaRecycler);
+        dList = findViewById(R.id.DoctorRecycler);
 
-        Area = new ArrayList<>();
-        adapter = new AreaAdapter(getApplicationContext(),Area);
-        ((AreaAdapter) adapter).setOnItemClickListener(AreaActivity.this);
+        doctorName = new ArrayList<>();
+        adapter = new DoctorAdapter(getApplicationContext(),doctorName);
 
         linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        dividerItemDecoration = new DividerItemDecoration(mList.getContext(), linearLayoutManager.getOrientation());
+        dividerItemDecoration = new DividerItemDecoration(dList.getContext(), linearLayoutManager.getOrientation());
 
-        mList.setHasFixedSize(true);
-        mList.setLayoutManager(linearLayoutManager);
-        mList.addItemDecoration(dividerItemDecoration);
-        mList.setAdapter(adapter);
+        dList.setHasFixedSize(true);
+        dList.setLayoutManager(linearLayoutManager);
+        dList.addItemDecoration(dividerItemDecoration);
+        dList.setAdapter(adapter);
 
         getData();
     }
@@ -76,11 +67,12 @@ public class AreaActivity extends AppCompatActivity implements AreaAdapter.OnIte
                     try {
                         JSONObject jsonObject = response.getJSONObject(i);
 
-                        Area area = new Area();
-                        area.setArea(jsonObject.getString("Area"));
+                        Doctor doctor = new Doctor();
+                        doctor.setName(jsonObject.getString("Name"));
+                        doctor.setQualification(jsonObject.getString("Qualification"));
 
 
-                        Area.add(area);
+                        doctorName.add(doctor);
                     } catch (JSONException e) {
                         e.printStackTrace();
                         progressDialog.dismiss();
@@ -100,18 +92,22 @@ public class AreaActivity extends AppCompatActivity implements AreaAdapter.OnIte
         requestQueue.add(jsonArrayRequest);
     }
 
-
-    // saving info
-
     @Override
-    public void OnItemClick(int position) {
+    public void onBackPressed()
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(DoctorActivity.this);
 
-        Area clickedItem = Area.get(position);
+        builder.setTitle("Confirmation")
+                .setMessage("Confirm Selection?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        DoctorActivity.super.onBackPressed();
+                    }
+                })
+                .setNegativeButton("No",null).setCancelable(false);
 
-        SharedPreferences sharedArea = getSharedPreferences("SelectedArea", Context.MODE_PRIVATE);
-
-        SharedPreferences.Editor AreaEditor = sharedArea.edit();
-        AreaEditor.putString("Area", clickedItem.getArea());
-
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 }

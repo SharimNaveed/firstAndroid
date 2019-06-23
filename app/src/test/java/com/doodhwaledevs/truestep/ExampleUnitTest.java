@@ -1,4 +1,4 @@
-package com.doodhwaledevs.inno;
+package com.doodhwaledevs.truestep;
 
 import org.junit.Test;
 
